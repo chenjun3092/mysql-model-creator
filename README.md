@@ -8,12 +8,12 @@
 	mysql-model-creator -conf=./test.conf -dist=../model -connect=default -table=members 只生成members表
 	mysql-model-creator -conf=./test.conf -dist=../model -connect=default -table=members,members_messages 只生成members和members_messages表
 
-数据库配置文件格式
+数据库配置文件格式 test.conf
 
-[mysql]
-host=localhost
-user=test
-password=test
-db=test
-port=3306
-charset=utf8
+	[mysql]
+	host=localhost
+	user=test
+	password=test
+	db=test
+	port=3306
+	charset=utf8
