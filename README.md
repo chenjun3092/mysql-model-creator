@@ -42,7 +42,7 @@
 
 	/*
 	说明:
-		针对数据库的用户结构体 Member 的定义及常用方法, 由db2const工具自动生成, 详细使用请查看: https://github.com/laixyz/db2const
+		针对数据库的用户结构体 Member 的定义及常用方法, 由db2const工具自动生成, 详细使用请查看: https://github.com/laixyz/mysql-model-creator
 	常用SQL:
 		SELECT `UserID`,`Email`,`MobilePhone`,`Password`,`PasswordCreated`,`AuthorizedIP`,`Token`,`TokenExpired`,`UserGroupID`,`RegisterDate`,`RegisterIP`,`ClientAppID`,`ClientHashID`,`State`,`Created`,`Updated`,`Deleted` FROM `members`
 		INSERT INTO `members` SET `UserID`=?,`Email`=?,`MobilePhone`=?,`Password`=?,`PasswordCreated`=?,`AuthorizedIP`=?,`Token`=?,`TokenExpired`=?,`UserGroupID`=?,`RegisterDate`=?,`RegisterIP`=?,`ClientAppID`=?,`ClientHashID`=?,`State`=?,`Created`=?,`Updated`=?,`Deleted`=?

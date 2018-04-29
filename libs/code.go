@@ -57,11 +57,7 @@ func GetStructMethod(table MysqlTable) string {
 	strMethod += "\n// 检查数据库连接是否正常\n"
 	strMethod += "func (this *" + table.Alias + ") Ping() (err error) {\n"
 	strMethod += "\tthis.ConnectID = \"" + table.ConnectID + "\"\n"
-	strMethod += "\tthis.DB, err = mysql.Using(\"" + table.ConnectID + "\")\n"
-	strMethod += "\tif err != nil {\n"
-	strMethod += "\t\treturn err\n"
-	strMethod += "\t}\n"
-	strMethod += "\treturn nil\n"
+	strMethod += "\treturn this.SQLXYZ_MODEL.Ping()\n"
 	strMethod += "}\n"
 
 	tmp = "db *sqlx.DB"

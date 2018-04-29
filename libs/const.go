@@ -4,6 +4,12 @@ import (
 	"database/sql"
 )
 
+const (
+	ProjectName = "MySQL-Model-Creator"
+	Version     = "0.9"
+	ProjectURL  = "https://github.com/laixyz/mysql-model-creator"
+)
+
 type MysqlTable struct {
 	TableName       string
 	Alias           string

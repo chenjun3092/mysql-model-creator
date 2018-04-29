@@ -63,7 +63,7 @@ func TableToConst(table MysqlTable) string {
 	sqlInsert += "\tUPDATE `" + table.TableName + "` SET " + strings.Join(table.FiledName, "=?,") + "=? \n"
 	sqlInsert += "\tDELETE FROM `" + table.TableName + "` WHERE \n"
 	sqlQuery = "\tSELECT " + strings.Join(table.FiledName, ",") + " FROM `" + table.TableName + "`\n"
-	fileContent := "\n说明:\n\t针对数据库的" + table.Comment + "结构体 " + table.Alias + " 的定义及常用方法, 由db2const工具自动生成, 详细使用请查看: https://github.com/laixyz/db2const\n"
+	fileContent := "\n说明:\n\t针对数据库的" + table.Comment + "结构体 " + table.Alias + " 的定义及常用方法, 由" + ProjectName + "工具自动生成, 详细使用请查看: " + ProjectURL + "\n"
 
 	structComment = "常用SQL:\n" + sqlQuery + sqlInsert
 

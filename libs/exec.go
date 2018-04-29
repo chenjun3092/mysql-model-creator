@@ -10,12 +10,10 @@ import (
 	"strings"
 )
 
-var Version string = "0.9"
-
 func Exec() {
 	var arg []string = os.Args
 	if arg[1] == "version" {
-		fmt.Println("\n db2const v " + Version)
+		fmt.Println("\n " + ProjectName + " v " + Version)
 		fmt.Println("\n 使用:")
 		fmt.Println(" 生成所有表:\n db2const -conf=./test.conf -dist=../model -connect=default")
 		fmt.Println(" 只生成members表:\n db2const -conf=./test.conf -dist=../model -connect=default -table=members")
