@@ -1,9 +1,13 @@
 # mysql-model-creator
 
 功能: 
+
 	针对mysql数据库的所有表创建golang需要的结构体及查询全表全字段的SQL语句常量
+	
 版本:
+
 	v0.9
+
 使用:
 
 	mysql-model-creator -conf=./test.conf -dist=../model -connect=default  生成所有表
