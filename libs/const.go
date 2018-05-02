@@ -39,3 +39,5 @@ type MysqlTableField struct {
 	Privileges string         `db:"Privileges"`
 	Comment    string         `db:"Comment"`
 }
+
+var FieldTypes map[string]bool = map[string]bool{"ArrayString": true}

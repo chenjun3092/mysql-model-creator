@@ -29,19 +29,30 @@ func TableToConst(table MysqlTable) string {
 		field.Comment = strings.Replace(field.Comment, "，", ",", -1)
 		var arrTmp = strings.Split(field.Comment, ",")
 		var fieldAlias = arrTmp[0]
+
+		var filedType string
+		if len(arrTmp) >= 2 {
+			filedType = arrTmp[1]
+		} else {
+			filedType = ""
+		}
+
 		fieldDoc += "\t" + field.Field + "\tbool\t`db:\"" + field.Field + "\"`"
 		fieldDoc += "\t// " + fieldAlias + " \n"
 		structDoc += "\t" + field.Field + " "
-		if strings.HasPrefix(field.Type, "bigint") || strings.HasPrefix(field.Type, "int") == true || strings.HasPrefix(field.Type, "tinyint") == true {
-			structDoc += "\tint64"
-		} else if strings.HasPrefix(field.Type, "float") == true {
-			structDoc += "\tfloat64"
-		} else if strings.HasPrefix(field.Type, "varchar") || strings.HasPrefix(field.Type, "text") || strings.HasPrefix(field.Type, "char") {
-			structDoc += "\tstring"
-		} else if strings.HasPrefix(field.Type, "datetime") || strings.HasPrefix(field.Type, "date") {
-			structDoc += "\ttime.Time"
+		if filedType == "ArrayString" {
+			structDoc += "\tsqlxyz.ArrayString"
+		} else {
+			if strings.HasPrefix(field.Type, "bigint") || strings.HasPrefix(field.Type, "int") == true || strings.HasPrefix(field.Type, "tinyint") == true {
+				structDoc += "\tint64"
+			} else if strings.HasPrefix(field.Type, "float") == true {
+				structDoc += "\tfloat64"
+			} else if strings.HasPrefix(field.Type, "varchar") || strings.HasPrefix(field.Type, "text") || strings.HasPrefix(field.Type, "char") {
+				structDoc += "\tstring"
+			} else if strings.HasPrefix(field.Type, "datetime") || strings.HasPrefix(field.Type, "date") {
+				structDoc += "\ttime.Time"
+			}
 		}
-
 		structDoc += "\t`db:\"" + field.Field + "\"`"
 		structDoc += "\t// " + fieldAlias + " 类型: " + field.Type
 		if field.Key == "PRI" {
@@ -56,7 +67,7 @@ func TableToConst(table MysqlTable) string {
 
 		structDoc += "\n"
 	}
-	var tablenameDoc string = "// 数据库表名\nconst " + table.Alias + "_TableName = \"`" + table.TableName + "`\"\n\n"
+	var tablenameDoc string = "// " + table.Alias + "TableName 数据库表名\nconst " + table.Alias + "TableName = \"`" + table.TableName + "`\"\n\n"
 	structDoc = "type " + table.Alias + " struct {\n" + structDoc + "}\n"
 	fieldDoc = "\ntype " + table.Alias + "Fields struct{\n" + fieldDoc + "}\n"
 	sqlInsert = "\tINSERT INTO `" + table.TableName + "` SET " + strings.Join(table.FiledName, "=?,") + "=? \n"
